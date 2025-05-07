@@ -551,3 +551,35 @@ paths:
                     items:
                       type: string
                       example: "profession is required"
+/2.0/vacancies/{id}/republish/:
+    put:
+      summary: Восстановление вакансии из архива
+      description: Повторное размещение вакансии, ранее находившейся в архиве.
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор вакансии
+          required: true
+          schema:
+            type: integer
+            example: 555
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                turbo:
+                  type: integer
+                  enum: [0, 1]
+                  example: 0
+                  description: Включить ли турбо-вакансию при повторном размещении
+                town:
+                  type: integer
+                  example: 4
+                  description: Город (работает только при восстановлении из архива)
+      responses:
+        '200':
+          description: Вакансия успешно восстановлена
+          content: {}
