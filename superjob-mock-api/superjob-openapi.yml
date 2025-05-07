@@ -64,7 +64,7 @@ paths:
                   type: integer
                   enum: [0, 1]
                   example: 1
-                  description: Тип доступа: 0 — закрытый, 1 — открытый
+                  description: "Тип доступа: 0 — закрытый, 1 — открытый"
                 id_user:
                   type: integer
                   example: 12345
