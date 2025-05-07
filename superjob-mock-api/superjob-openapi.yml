@@ -262,8 +262,6 @@ paths:
                 - town
                 - published
                 - catalogues
-                - firm_name
-                - firm_activity
       responses:
         '200':
           description: Вакансия успешно создана
