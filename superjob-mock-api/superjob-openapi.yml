@@ -551,7 +551,7 @@ paths:
                     items:
                       type: string
                       example: "profession is required"
-/2.0/vacancies/{id}/republish/:
+  /2.0/vacancies/{id}/republish/:
     put:
       summary: Восстановление вакансии из архива
       description: Повторное размещение вакансии, ранее находившейся в архиве.
