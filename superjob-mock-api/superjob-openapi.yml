@@ -608,3 +608,76 @@ paths:
                   error:
                     type: string
                     example: "Vacancy is already archived"
+  /2.0/resumes/received/{id_vac}/:
+    get:
+      summary: Получить список откликов на вакансию
+      description: Возвращает список резюме, откликнувшихся на вакансию с указанным id.
+      parameters:
+        - name: id_vac
+          in: path
+          description: Идентификатор вакансии
+          required: true
+          schema:
+            type: integer
+            example: 555
+        - name: only_new_received
+          in: query
+          description: Показывать только новые резюме (установите параметр равным 1)
+          required: false
+          schema:
+            type: integer
+            enum: [0, 1]
+            example: 1
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  objects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        resume:
+                          type: object
+                          description: Стандартное резюме
+                          properties:
+                            id:
+                              type: integer
+                              example: 123456
+                            # Здесь можно расширить структуру резюме по необходимости
+                        cover_letter:
+                          type: string
+                          example: "Сопроводительное письмо"
+                        events:
+                          type: array
+                          items:
+                            type: object
+                            description: История событий
+                            properties:
+                              event_type:
+                                type: string
+                                example: "viewed"
+                              timestamp:
+                                type: string
+                                format: date-time
+                                example: "2025-04-05T12:34:56Z"
+                  total:
+                    type: integer
+                    example: 3
+                  more:
+                    type: boolean
+                    example: false
+        '404':
+          description: Вакансия не найдена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Vacancy not found"
