@@ -290,3 +290,264 @@ paths:
                     items:
                       type: string
                       example: "profession is required"
+  /2.0/vacancies/{id}/:
+    put:
+      summary: Обновить информацию о вакансии
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор вакансии
+          required: true
+          schema:
+            type: integer
+            example: 987654
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                profession:
+                  type: string
+                  example: "Разработчик Python"
+                  description: Название вакансии
+                turbo:
+                  type: integer
+                  enum: [0, 1]
+                  example: 0
+                  description: Турбо-вакансия или нет
+                town:
+                  type: integer
+                  example: 4
+                  description: Город (значения можно получить в /towns)
+                published:
+                  type: integer
+                  enum: [0, 1]
+                  example: 1
+                  description: "Тип доступа: 0 — закрытый, 1 — открытый"
+                id_user:
+                  type: integer
+                  example: 12345
+                  description: ID пользователя
+                catalogues:
+                  type: array
+                  items:
+                    type: integer
+                  example: [100, 200]
+                  description: Сферы деятельности (максимум 5)
+                code:
+                  type: string
+                  example: "VAC-12345"
+                  description: Код вакансии
+                external_url:
+                  type: string
+                  example: "https://example.com/vacancy"
+                  description: URL внешнего сайта
+                work:
+                  type: string
+                  example: "Разработка backend-компонентов на Python"
+                  description: Должностные обязанности
+                compensation:
+                  type: string
+                  example: "Оклад от 100 000 до 150 000 руб."
+                  description: Условия работы
+                candidat:
+                  type: string
+                  example: "Знание Python, опыт работы от 3 лет"
+                  description: Требования к кандидату
+                type_of_work:
+                  type: integer
+                  enum: [6, 10, 12, 13, 7, 9]
+                  example: 6
+                  description: Тип занятости
+                place_of_work:
+                  type: integer
+                  enum: [1, 2, 3]
+                  example: 1
+                  description: Место работы
+                education:
+                  type: integer
+                  enum: [2, 3, 4, 5, 6]
+                  example: 2
+                  description: Образование
+                experience:
+                  type: integer
+                  enum: [1, 2, 3, 4]
+                  example: 3
+                  description: Опыт работы
+                maritalstatus:
+                  type: integer
+                  enum: [0, 2, 3]
+                  example: 0
+                  description: Семейное положение
+                children:
+                  type: integer
+                  enum: [0, 2, 3]
+                  example: 0
+                  description: Наличие детей
+                languages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id_language:
+                        type: integer
+                        example: 4
+                      level:
+                        type: integer
+                        example: 1
+                    required: ["id_language", "level"]
+                  example:
+                    - id_language: 4
+                      level: 1
+                  description: Языки и уровень владения
+                contact:
+                  type: string
+                  example: "Иван Петров"
+                  description: Контактное лицо
+                email:
+                  type: string
+                  example: "hr@example.com"
+                  description: Email
+                url:
+                  type: string
+                  example: "https://example.com"
+                  description: Адрес сайта компании
+                phones:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      country_code:
+                        type: integer
+                        example: 7
+                      city_code:
+                        type: integer
+                        example: 499
+                      number:
+                        type: integer
+                        example: 7870000
+                      additional:
+                        type: string
+                        example: "Доб. 03"
+                    required: ["country_code", "city_code", "number"]
+                  example:
+                    - country_code: 7
+                      city_code: 499
+                      number: 7870000
+                      additional: "Доб. 03"
+                  description: Телефоны
+                driving_licence:
+                  type: array
+                  items:
+                    type: string
+                    enum: ['A', 'B', 'C', 'D', 'E']
+                  example: ['B']
+                  description: Водительские права
+                metro:
+                  type: array
+                  items:
+                    type: integer
+                  example: [101, 102]
+                  description: Станции метро
+                payment_from:
+                  type: integer
+                  example: 100000
+                  description: Оклад от
+                payment_to:
+                  type: integer
+                  example: 150000
+                  description: Оклад до
+                moveable:
+                  type: boolean
+                  example: true
+                  description: Готовность к переезду
+                gender:
+                  type: integer
+                  enum: [0, 2, 3]
+                  example: 0
+                  description: Пол
+                age_from:
+                  type: integer
+                  example: 25
+                  description: Возраст от
+                age_to:
+                  type: integer
+                  example: 40
+                  description: Возраст до
+                firm_name:
+                  type: string
+                  example: "ООО Пример"
+                  description: Название компании
+                firm_activity:
+                  type: string
+                  example: "Разработка программного обеспечения"
+                  description: Деятельность компании
+                address:
+                  type: string
+                  example: "ул. Пушкина, д. Колотушкина"
+                  description: Адрес работодателя
+                anonymous:
+                  type: boolean
+                  example: false
+                  description: Анонимная ли вакансия
+                refresh_vac:
+                  type: boolean
+                  example: true
+                  description: Автообновление вакансии
+                extend_vac:
+                  type: boolean
+                  example: true
+                  description: Автопродление вакансии
+                resumesubscription_status:
+                  type: boolean
+                  example: true
+                  description: Подписка на резюме
+                resumesubscription_keywords:
+                  type: string
+                  example: "Python, Django"
+                  description: Ключевые слова подписки
+                resumesubscription_kwc:
+                  type: string
+                  enum: ["or", "and", "particular"]
+                  example: "or"
+                  description: Логика поиска слов
+                resumesubscription_rws:
+                  type: integer
+                  enum: [7, 250, 50, 60, 8, 3, 6, 2]
+                  example: 50
+                  description: Где искать слова в резюме
+              required:
+                - profession
+                - town
+                - published
+                - catalogues
+                - firm_name
+                - firm_activity
+      responses:
+        '200':
+          description: Вакансия успешно обновлена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 987654
+        '400':
+          description: Ошибка валидации данных
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "error"
+                  errors:
+                    type: array
+                    items:
+                      type: string
+                      example: "profession is required"
