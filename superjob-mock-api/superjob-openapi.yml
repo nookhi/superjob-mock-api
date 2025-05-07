@@ -287,7 +287,7 @@ paths:
                     type: array
                     items:
                       type: string
-                      example: "profession is required"
+                      example: "profession, town, published, catalogues is required"
   /2.0/vacancies/{id}/:
     put:
       summary: Обновить информацию о вакансии
@@ -521,8 +521,6 @@ paths:
                 - town
                 - published
                 - catalogues
-                - firm_name
-                - firm_activity
       responses:
         '200':
           description: Вакансия успешно обновлена
@@ -548,7 +546,7 @@ paths:
                     type: array
                     items:
                       type: string
-                      example: "profession is required"
+                      example: "profession, town, published, catalogues is required"
   /2.0/vacancies/{id}/republish/:
     put:
       summary: Восстановление вакансии из архива
