@@ -272,10 +272,7 @@ paths:
               schema:
                 type: object
                 properties:
-                  status:
-                    type: string
-                    example: "success"
-                  vacancy_id:
+                  id:
                     type: integer
                     example: 987654
         '400':
