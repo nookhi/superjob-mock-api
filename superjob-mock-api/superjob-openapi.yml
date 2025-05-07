@@ -583,3 +583,28 @@ paths:
         '200':
           description: Вакансия успешно восстановлена
           content: {}
+  /2.0/vacancies/{id}/archive/:
+    put:
+      summary: Перенос вакансии в архив
+      description: Архивирует указанную вакансию. Если вакансия уже в архиве — возвращается ошибка 403.
+      parameters:
+        - name: id
+          in: path
+          description: Идентификатор вакансии
+          required: true
+          schema:
+            type: integer
+            example: 555
+      responses:
+        '204':
+          description: Вакансия успешно архивирована
+        '403':
+          description: Вакансия уже находится в архиве
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Vacancy is already archived"
