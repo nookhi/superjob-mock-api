@@ -4,38 +4,520 @@ info:
   version: 1.0.0
   description: Mock API для получения резюме по ID и создания вакансий
 paths:
-  /2.0/resumes/{id}/:
-    get:
-      summary: Получить резюме по ID
-      parameters:
-        - name: id
-          in: path
-          description: Идентификатор резюме
-          required: true
-          schema:
-            type: integer
-            example: 123456
-      responses:
-        '200':
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    example: 1111111
-        '404':
-          description: Резюме не найдено
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: Resume not found
+  /2.0/resumes/received/:
+    summary: Получить список полученных резюме по id вакансии
+    parameters:
+      - name: id_vac
+        in: query
+        description: Идентификатор вакансии
+        required: true
+        schema:
+          type: integer
+          example: 2222222222
+    responses:
+      '200':
+        description: Успешный ответ
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                objects:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      resume:
+                        type: object
+                        description: Данные резюме
+                        properties:
+                          id:
+                            type: integer
+                            example: 1111111
+                          id_user:
+                            type: integer
+                            example: 11111110000
+                          last_profession:
+                            type: string
+                            example: "Руководитель проекта"
+                          payment:
+                            type: integer
+                            example: 200000
+                          currency:
+                            type: string
+                            example: "rub"
+                          birthday:
+                            type: integer
+                            example: 1
+                          birthmonth:
+                            type: integer
+                            example: 1
+                          birthyear:
+                            type: integer
+                            example: 1979
+                          age:
+                            type: integer
+                            example: 34
+                          link:
+                            type: string
+                            example: "https://www.superjob.ru/resume/cv-1111111.html "
+                          metro:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 207
+                                title:
+                                  type: string
+                                  example: "Балтийская"
+                                id_metro_line:
+                                  type: integer
+                                  example: 13
+                          address:
+                            type: string
+                            example: "Литейный"
+                          citizenship:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              title:
+                                type: string
+                                example: "Россия"
+                          published:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 0
+                              title:
+                                type: string
+                                example: "Закрытый доступ"
+                          moveable:
+                            type: boolean
+                            example: true
+                          agreement:
+                            type: boolean
+                            example: false
+                          is_archive:
+                            type: boolean
+                            example: false
+                          moveable_towns:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                  example: 793
+                                title:
+                                  type: string
+                                  example: "Таллинн"
+                          type_of_work:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 6
+                              title:
+                                type: string
+                                example: "полный рабочий день"
+                          place_of_work:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              title:
+                                type: string
+                                example: "на территории работодателя"
+                          education:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 2
+                              title:
+                                type: string
+                                example: "Высшее"
+                          maritalstatus:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 2
+                              title:
+                                type: string
+                                example: "cостоит в браке"
+                          children:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 3
+                              title:
+                                type: string
+                                example: "есть"
+                          business_trip:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 0
+                              title:
+                                type: string
+                                example: "не имеет значения"
+                          languages:
+                            type: array
+                            items:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                  title:
+                                    type: string
+                          driving_licence:
+                            type: array
+                            items:
+                              type: string
+                              example: "B"
+                          catalogues:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                title:
+                                  type: string
+                                positions:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: integer
+                                      title:
+                                        type: string
+                          town:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 14
+                              title:
+                                type: string
+                                example: "Санкт-Петербург"
+                              declension:
+                                type: string
+                                example: "в Санкт-Петербурге"
+                              genitive:
+                                type: string
+                                example: "Санкт-Петербурга"
+                          region:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 3
+                              title:
+                                type: string
+                                example: "Центральный округ"
+                          experience_text:
+                            type: boolean
+                            example: false
+                          experience_month_total:
+                            type: integer
+                            example: 0
+                          work_history:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                town:
+                                  type: 'object'
+                                  nullable: true
+                                  example: null
+                                name:
+                                  type: string
+                                profession:
+                                  type: string
+                                work:
+                                  type: string
+                                type:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    title:
+                                      type: string
+                                monthbeg:
+                                  type: integer
+                                monthend:
+                                  type: integer
+                                yearbeg:
+                                  type: integer
+                                yearend:
+                                  type: integer
+                          base_education_history:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                institute:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    title:
+                                      type: string
+                                town:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    title:
+                                      type: string
+                                    declension:
+                                      type: string
+                                    genitive:
+                                      type: string
+                                faculty:
+                                  type: string
+                                profession:
+                                  type: string
+                                education_type:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    title:
+                                      type: string
+                                education_form:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    title:
+                                      type: string
+                                yearend:
+                                  type: integer
+                          education_history:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                institute:
+                                  type: string
+                                town:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: integer
+                                    title:
+                                      type: string
+                                    declension:
+                                      type: string
+                                    genitive:
+                                      type: string
+                                name:
+                                  type: string
+                                yearend:
+                                  type: integer
+                          firstname:
+                            type: string
+                            example: "Матвей"
+                          middlename:
+                            type: string
+                            example: "Матвеевич"
+                          lastname:
+                            type: string
+                            example: "Травкин"
+                          phone1:
+                            type: string
+                            example: "+ 7 495 984-77-74"
+                          timebeg1:
+                            type: integer
+                            example: 8
+                          timeend1:
+                            type: integer
+                            example: 20
+                          phone2:
+                            type: string
+                            example: "7(900)000-00-00"
+                          timebeg2:
+                            type: integer
+                            example: 8
+                          timeend2:
+                            type: integer
+                            example: 24
+                          email:
+                            type: string
+                            example: "matvey@superjob.ru"
+                          other_contacts:
+                            type: string
+                            example: "skype:superjob.ru"
+                          social_links:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                title:
+                                  type: string
+                                link:
+                                  type: string
+                          favorite:
+                            type: boolean
+                            example: true
+                          date_view:
+                            type: integer
+                            example: 1422280247
+                          received_resume_info:
+                            type: object
+                            properties:
+                              status:
+                                type: integer
+                              id_user:
+                                type: integer
+                              id_last_vac:
+                                type: integer
+                              display_contacts:
+                                type: integer
+                              new_event:
+                                type: integer
+                              events:
+                                type: array
+                                items:
+                                  type: object
+                          inbox_info:
+                            type: object
+                            properties:
+                              resume_status_title:
+                                type: string
+                              is_incoming:
+                                type: boolean
+                              receipt_way:
+                                type: object
+                                properties:
+                                  type:
+                                    type: integer
+                                  text:
+                                    type: string
+                                  date_event:
+                                    type: integer
+                                  covering_letter:
+                                    type: 'object'
+                                    nullable: true
+                              last_event_info:
+                                type: object
+                                properties:
+                                  type:
+                                    type: integer
+                                  text:
+                                    type: string
+                                  date_event:
+                                    type: integer
+                                  covering_letter:
+                                    type: 'object'
+                                    nullable: true
+                          comments:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                text:
+                                  type: string
+                                author:
+                                  type: ['string', 'null']
+                                date:
+                                  type: integer
+                          gender:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              title:
+                                type: string
+                          achievements:
+                            type: string
+                          additional_info:
+                            type: string
+                          date_published:
+                            type: integer
+                          date_last_modified:
+                            type: integer
+                          profession:
+                            type: string
+                          recommendations:
+                            type: string
+                          photo:
+                            type: ['string', 'null']
+                          portfolio:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                source:
+                                  type: string
+                                resized:
+                                  type: string
+                      is_new:
+                        type: boolean
+                        example: true
+                      events:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id_resume:
+                              type: integer
+                              example: 10000000000
+                            id_vac:
+                              type: integer
+                              example: 2222222222
+                            type:
+                              type: integer
+                              example: 80
+                            date_event:
+                              type: integer
+                              example: 1392232237
+                            text:
+                              type: string
+                              example: "Отклонено"
+                            date:
+                              type: string
+                              example: "12 февраля"
+                            description:
+                              type: string
+                              example: "на вакансию «Монтировщик»"
+                            type_title:
+                              type: string
+                              example: "Найдено 12 февраля самостоятельно на вакансию «Монтировщик»"
+                total:
+                  type: integer
+                  example: 3
+                more:
+                  type: boolean
+                  example: false
+      '404':
+        description: Вакансия не найдена
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: "Vacancy not found"
 
   /2.0/vacancies/:
     post:
